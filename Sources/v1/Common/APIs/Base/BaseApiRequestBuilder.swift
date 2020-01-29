@@ -52,7 +52,7 @@ public class BaseApiRequestBuilder {
         
         guard let parameters = parameters,
             let data = try? JSONCoders.snakeCaseEncoder.encode(parameters),
-            let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? RequestParameters
+            let dictionary = ((try? JSONSerialization.jsonObject(with: data, options: []) as? RequestParameters) as RequestParameters??)
             else {
                 return nil
         }
